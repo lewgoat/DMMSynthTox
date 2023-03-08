@@ -1,4 +1,4 @@
-cid,ld50,smiles
+ID,LD50,Smiles
 6,0.28,C1=CC(=C(C=C1[N+](=O)[O-])[N+](=O)[O-])Cl
 11,0.67,C(CCl)Cl
 13,0.756,C1=CC(=C(C=C1Cl)Cl)Cl
