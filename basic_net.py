@@ -15,9 +15,15 @@ VALIDATION_PERCENT = 10
 MOL_TO_VEC_DIM_PREFIX = "mol2vec-"
 
 def smiles_to_vec():
-    #featurize('datatable.smi', 'vectorised.csv', 'model_300dim.pkl', r=300)
+    featurize('datatable.smi', 'vectorised.csv', 'model_300dim.pkl', r=300)
     
     vectors = read_csv("vectorised.csv", usecols=lambda x: x.isnumeric())
+    return vectors
+
+def smiles_to_vec_new():
+    featurize('EFSAData.smi', 'Testingvectorised.csv', 'model_300dim.pkl', r=300)
+    
+    vectors = read_csv("Testingvectorised.csv", usecols=lambda x: x.isnumeric())
     return vectors
 
 def main():
@@ -47,13 +53,21 @@ def main():
 
     #net.predict()
     
+    vec_frame_new = smiles_to_vec_new()
+    Testinginputs = vec_frame_new.to_numpy()
+    Testresults = net.predict(Testinginputs)
+    print(Testresults)
+    
+    a=1
+    
+    
 
 def plot_loss(history):
   plt.plot(history.history['loss'], label='loss')
   plt.plot(history.history['val_loss'], label='val_loss')
   plt.ylim([0, 2])
   plt.xlabel('Epoch')
-  plt.ylabel('Error [MPG]')
+  plt.ylabel('Error [log(g/kg)^2]')
   plt.legend()
   plt.grid(True)
   plt.show()
